@@ -13,3 +13,17 @@ export const signIn = credentials => {
       });
   };
 };
+
+export const signOut = () => {
+  // dispatch to send info, getState for state, getFirebase to log out
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: "SIGNOUT_SUCCESS" });
+      });
+  };
+};
