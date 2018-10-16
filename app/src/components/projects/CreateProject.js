@@ -19,6 +19,7 @@ class CreateProject extends Component {
     // console.log(this.state);
     // Call the props of the function createProject and uses the state from above
     this.props.createProject(this.state);
+    this.props.history.push("/");
   };
 
   render() {
