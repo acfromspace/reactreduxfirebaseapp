@@ -20,14 +20,21 @@ const store = createStore(
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
     reduxFirestore(firebaseConfig),
-    reactReduxFirebase(firebaseConfig)
+    reactReduxFirebase(firebaseConfig, {
+      useFirestoreForProfile: true,
+      userProfile: "users",
+      attachAuthIsReady: true
+    })
   )
 );
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
-registerServiceWorker();
+// Check if the user is logged in first then render the correct state
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById("root")
+  );
+  registerServiceWorker();
+});
