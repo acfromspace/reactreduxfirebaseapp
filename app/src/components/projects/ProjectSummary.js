@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 // Involved with ProjectList.js
 
@@ -10,7 +11,9 @@ const ProjectSummary = ({ project }) => {
         <p>
           Posted by {project.authorFirstName} {project.authorLastName}
         </p>
-        <p className="grey-text" />
+        <p className="grey-text">
+          {moment(project.createdAt.toDate()).calendar()}
+        </p>
       </div>
     </div>
   );
