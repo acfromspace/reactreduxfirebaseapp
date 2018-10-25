@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 
 const Navbar = props => {
   const { auth, profile } = props;
-  console.log(auth);
 
   // Check if the user is logged in or logged out
   const links = auth.uid ? (
@@ -30,7 +29,6 @@ const Navbar = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile
