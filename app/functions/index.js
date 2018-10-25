@@ -34,7 +34,10 @@ exports.projectCreated = functions.firestore
     return createNotification(notification);
   });
 
+// Uses the auth function
+// Create a trigger when a user is created on the auth service
 exports.userJoined = functions.auth.user().onCreate(user => {
+  // Returns the correct hierarchical function
   return admin
     .firestore()
     .collection("users")
